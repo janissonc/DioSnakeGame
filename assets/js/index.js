@@ -3,11 +3,11 @@ let context = canvas.getContext("2d");
 let box = 32;
 let snake = [];
 let info = {
-    nivel:1,
     pontos:0,
     perdas:0,
     paradas:0,
-    recorde:0
+    recorde:0,
+    velocidade:100
 }
 let jogo;
 snake[0] = {
@@ -85,6 +85,7 @@ function iniciarJogo(){
             info.recorde = info.pontos;
             $("#recorde").text(info.recorde);
         }
+        
 
         $("#pontos").text(info.pontos);
         food.x = Math.floor(Math.random() * 15 + 1) * box;
@@ -127,11 +128,11 @@ btnIniciar.click(()=>{
         info.pontos = 0;
         $("#pontos").text(info.pontos)
         clearInterval(jogo);
-        jogo = setInterval(iniciarJogo,100)
+        jogo = setInterval(iniciarJogo,info.velocidade)
     }else{
         jogoIniciado = true;
         btnIniciar.text('Reiniciar')
-        jogo = setInterval(iniciarJogo,100)
+        jogo = setInterval(iniciarJogo,info.velocidade)
     }
     
 })
